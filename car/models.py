@@ -9,7 +9,7 @@ class Car(BaseModel):
         ('3', 'Multiple_piece'),
         ('4', 'whole_color'),
     ]
-    body = models.SmallIntegerField(choices=BODY_CHOICES, null=True, max_length=1)
+    body = models.SmallIntegerField(choices=BODY_CHOICES, null=True)
     title = models.CharField(max_length=60)
     tip = models.CharField(null=True, blank=True)
     color = models.CharField()

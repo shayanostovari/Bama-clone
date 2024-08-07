@@ -1,10 +1,10 @@
 from django.db import models
 from lib.base_model import BaseModel
 from car.models import Car
-from django.contrib.auth import get_user_model
+from user.models import User
 
 
-User = get_user_model()
+# from django.contrib.auth import get_user_model
 
 
 class Advertisement(BaseModel):
@@ -12,3 +12,4 @@ class Advertisement(BaseModel):
     is_urgent = models.BooleanField(default=False)
     car = models.ForeignKey(Car, on_delete=models.PROTECT, related_name='advertisement')
     user = models.ForeignKey(User, on_delete=models.PROTECT, related_name='advertisement')
+

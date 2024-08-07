@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'advertisement.apps.AdvertisementConfig',
     'car.apps.CarConfig',
     'user.apps.UserConfig',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -70,8 +71,12 @@ WSGI_APPLICATION = 'hamrah_mechanic.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'hamrah_mechanic',
+        'PASSWORD': '1234',
+        'HOST': 'localhost',
+        'USER': 'shayan2',
+        'PORT': 5432,
     }
 }
 
