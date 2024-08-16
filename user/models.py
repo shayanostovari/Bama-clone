@@ -1,10 +1,7 @@
-from datetime import timezone
-
-from django.db import models
-
-from lib.base_model import BaseModel
+from django.contrib.auth.models import AbstractUser, Group, Permission,UserManager
 from django.utils.translation import gettext_lazy as _
-from django.contrib.auth.models import AbstractUser, UserManager
+from django.db import models
+from lib.base_model import BaseModel
 
 
 class User(BaseModel, AbstractUser):
@@ -12,9 +9,7 @@ class User(BaseModel, AbstractUser):
         _("username"),
         max_length=150,
         unique=True,
-        help_text=_(
-            "Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only."
-        ),
+        help_text=_("Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only."),
         error_messages={
             "unique": _("A user with that username already exists."),
         },
@@ -32,9 +27,21 @@ class User(BaseModel, AbstractUser):
         _("active"),
         default=True,
         help_text=_(
-            "Designates whether this user should be treated as active. "
-            "Unselect this instead of deleting accounts."
-        ),
+            "Designates whether this user should be treated as active. Unselect this instead of deleting accounts."),
+    )
+
+    # Additional fields or methods specific to your user model can go here.
+
+    groups = models.ManyToManyField(
+        Group,
+        related_name="custom_user_set",  # Change this to your preferred name
+        blank=True,
+    )
+
+    user_permissions = models.ManyToManyField(
+        Permission,
+        related_name="custom_user_permissions",  # Change this to your preferred name
+        blank=True,
     )
 
     objects = UserManager()
