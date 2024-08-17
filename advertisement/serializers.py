@@ -1,10 +1,10 @@
 from rest_framework import serializers
 from advertisement.models import Advertisement
-from car.models import Car
+from car.serializers import CarCreateSerializer
 
 
 class AdvertisementCreateSerializer(serializers.ModelSerializer):
-    #car = serializers.SerializerMethodField(source='car.title')
+    car = CarCreateSerializer()
 
     class Meta:
         model = Advertisement

@@ -3,7 +3,8 @@ from rest_framework.generics import CreateAPIView, UpdateAPIView, DestroyAPIView
 from rest_framework.permissions import IsAuthenticated
 from advertisement.models import Advertisement
 from advertisement.serializers import (AdvertisementCreateSerializer,
-                                       AdvertisementUpdateSerializer, AdvertisementDestroySerializer)
+                                       AdvertisementUpdateSerializer,
+                                       AdvertisementDestroySerializer)
 
 
 class AdvertisementCreateApiView(ListCreateAPIView):
@@ -11,6 +12,8 @@ class AdvertisementCreateApiView(ListCreateAPIView):
     queryset = Advertisement.objects.all()
     permission_classes = (IsAuthenticated,)
 
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
 
 class AdvertisementUpdateApiView(UpdateAPIView):
     serializer_class = AdvertisementUpdateSerializer
