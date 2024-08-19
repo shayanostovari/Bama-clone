@@ -1,13 +1,14 @@
 from django.db import models
 from lib.base_model import BaseModel
+# from advertisement.models import Advertisement
 
 
 class Car(BaseModel):
     BODY_CHOICES = [
-        ('1', '1piece'),
-        ('2', '2piece'),
-        ('3', 'Multiple_piece'),
-        ('4', 'whole_color'),
+        (1, 'None'),
+        (2, '1piece'),
+        (3, '2pieces'),
+        (4, 'whole_color'),
     ]
     body = models.SmallIntegerField(choices=BODY_CHOICES, null=True)
     title = models.CharField(max_length=60)
@@ -15,3 +16,4 @@ class Car(BaseModel):
     color = models.CharField()
     model_year = models.SmallIntegerField()
     description = models.TextField(max_length=256)
+    # advertisement = models.ForeignKey(Advertisement, on_delete=models.PROTECT, related_name='car')
