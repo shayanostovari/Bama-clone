@@ -17,7 +17,7 @@ class AdvertisementAdmin(admin.ModelAdmin):
 
     def car_details(self, obj):
         if obj.car:
-            return (f"ID : {obj.car.id} \n Car : {obj.car.title} \n Color : ({obj.car.color}) \n"
+            return (f"ID : {obj.car.id} \n Car title : {obj.car.title} \n Color : ({obj.car.color}) \n"
                     f" Tip : {obj.car.tip}, \n Model year : {obj.car.model_year} \n Body {obj.car.body} \n"
                     f" Description : {obj.car.description} \n ")
         return "No Car"

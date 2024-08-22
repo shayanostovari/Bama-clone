@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'car.apps.CarConfig',
     'user.apps.UserConfig',
     'rest_framework',
+    'rest_framework_simplejwt'
 ]
 
 MIDDLEWARE = [
@@ -78,6 +79,13 @@ DATABASES = {
         'USER': 'shayan2',
         'PORT': 5432,
     }
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework_simplejwt.authentication.SessionAuthentication',
+    ) if DEBUG == True else 'rest_framework_simplejwt.authentication.JWTAuthentication',
 }
 
 # Password validation
