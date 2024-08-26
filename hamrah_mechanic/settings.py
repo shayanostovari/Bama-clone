@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'advertisement.apps.AdvertisementConfig',
     'car.apps.CarConfig',
     'user.apps.UserConfig',
+    'notification.apps.NotificationConfig',
     'rest_framework',
     'rest_framework_simplejwt'
 ]

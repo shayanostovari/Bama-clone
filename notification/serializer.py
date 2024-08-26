@@ -6,4 +6,4 @@ from notification.models import Alert
 class AlertCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Alert
-        fields = ('car_model', )
+        fields = ('car_model', '')
