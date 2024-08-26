@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from rest_framework.generics import CreateAPIView, UpdateAPIView, DestroyAPIView, ListCreateAPIView
+from rest_framework.generics import ListCreateAPIView, \
+    RetrieveUpdateAPIView, RetrieveDestroyAPIView
 from rest_framework.permissions import IsAuthenticated
 from advertisement.models import Advertisement
 from advertisement.serializers import (AdvertisementCreateSerializer,
@@ -15,14 +15,21 @@ class AdvertisementCreateApiView(ListCreateAPIView):
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
-class AdvertisementUpdateApiView(UpdateAPIView):
+
+class AdvertisementUpdateApiView(RetrieveUpdateAPIView):
     serializer_class = AdvertisementUpdateSerializer
     queryset = Advertisement.objects.all()
     permission_classes = (IsAuthenticated,)
 
+    def get_queryset(self):
+        return super().get_queryset().filter(user=self.request.user)
 
-class AdvertisementDeleteApiView(DestroyAPIView):
+
+class AdvertisementDeleteApiView(RetrieveDestroyAPIView):
     serializer_class = AdvertisementDestroySerializer
     queryset = Advertisement.objects.all()
     permission_classes = (IsAuthenticated,)
+
+    def get_queryset(self):
+        return super().get_queryset().filter(user=self.request.user)
 
