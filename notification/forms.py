@@ -1,10 +1,7 @@
 from django import forms
-from .models import Alert
+from .models import Notification
 
-class AlertForm(forms.ModelForm):
+class NotificationForm(forms.ModelForm):
     class Meta:
-        model = Alert
-        fields = ['car_model']
-        widgets = {
-            'car_model': forms.TextInput(attrs={'placeholder': 'what car u wanna pick : '}),
-        }
+        model = Notification
+        fields = ['message', 'notification_type', 'car_model', 'send_at']

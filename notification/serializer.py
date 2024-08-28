@@ -1,9 +1,9 @@
 from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer
-from notification.models import Alert
+from notification.models import Notification
 
 
-class AlertCreateSerializer(serializers.ModelSerializer):
+class NotificationCreateSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Alert
-        fields = ('car_model', '')
+        model = Notification
+        fields = ('car_model', 'send_at', 'notification_type', 'message')
