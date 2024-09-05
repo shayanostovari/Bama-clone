@@ -2,6 +2,9 @@ from rest_framework import serializers
 from advertisement.models import Advertisement
 from car.serializers import CarCreateSerializer
 from car.models import Car
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 
 class AdvertisementCreateSerializer(serializers.ModelSerializer):

@@ -27,7 +27,7 @@ def send_email_notification(notification):
         send_mail(
             'You have a new notification!',
             notification.message,
-            'from@example.com',
+            'shayan.work.python@gmail.com',
             [notification.user.email],
         )
     except Exception as e:

@@ -6,7 +6,9 @@ from notification.forms import NotificationForm
 from notification.models import Notification
 from notification.serializer import NotificationCreateSerializer
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import get_user_model
 
+USer = get_user_model()
 
 class NotificationCreateApiView(CreateAPIView):
     serializer_class = NotificationCreateSerializer

@@ -12,8 +12,8 @@ app.config_from_object('django.conf:settings', namespace='CELERY')
 app.autodiscover_tasks()
 
 app.conf.beat_schedule = {
-    'send-notifications-every-hour': {
-        'task': 'your_app.tasks.send_notifications',
+    'send-notification-every-hour': {
+        'task': 'notification.tasks.send_notifications',
         'schedule': crontab(minute=0, hour='*'),  # هر ساعت یکبار
     },
 }
