@@ -1,7 +1,6 @@
 from django.db import models
 from lib.base_model import BaseModel
 from car.models import Car
-from user.models import User
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
