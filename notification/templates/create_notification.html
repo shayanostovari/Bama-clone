@@ -1,0 +1,10 @@
+<form method="post">
+    {% csrf_token %}
+    <h2>Car Attributes</h2>
+    {{ car_form.as_p }}
+
+    <h2>Notification Details</h2>
+    {{ notification_form.as_p }}
+
+    <button type="submit">Create Notification</button>
+</form>
