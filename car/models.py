@@ -15,5 +15,4 @@ class Car(BaseModel):
     tip = models.CharField(null=True, blank=True)
     color = models.CharField()
     model_year = models.SmallIntegerField()
-    description = models.TextField(max_length=256)
-    # advertisement = models.ForeignKey(Advertisement, on_delete=models.PROTECT, related_name='car')
+    description = models.TextField(max_length=256, blank=True)
