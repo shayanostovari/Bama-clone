@@ -1,7 +1,14 @@
 from django import forms
-from .models import Notification
+from car.models import Car
+from notification.models import Notification
+
+class CarAttributesForm(forms.ModelForm):
+    class Meta:
+        model = Car
+        fields = ['body', 'title', 'tip', 'color', 'model_year', 'description']
 
 class NotificationForm(forms.ModelForm):
     class Meta:
         model = Notification
-        fields = ['message', 'notification_type', 'car_model', 'send_at']
+        fields = ['notification_type']
+

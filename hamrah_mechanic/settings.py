@@ -56,7 +56,7 @@ ROOT_URLCONF = 'hamrah_mechanic.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'notification/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -136,7 +136,7 @@ CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'UTC'
 CELERY_BEAT_SCHEDULE = {
     'send-notifications-every-minute': {
-        'task': 'notifications.tasks.send_notifications',
+        'task': 'notification.tasks.send_notifications',
         'schedule': 60.0,
     },
 }

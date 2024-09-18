@@ -1,43 +1,39 @@
-from django.utils import timezone
 from django.shortcuts import render, redirect
-from rest_framework.generics import CreateAPIView
-from rest_framework.permissions import IsAuthenticated
-from notification.forms import NotificationForm
-from notification.models import Notification
-from notification.serializer import NotificationCreateSerializer
+from django.views import View
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import get_user_model
+from django.utils.decorators import method_decorator
+from notification.models import Notification
+from notification.forms import CarAttributesForm, NotificationForm
 
-USer = get_user_model()
+@method_decorator(login_required, name='dispatch')
+class NotificationCreateApiView(View):
+    def get(self, request):
+        car_form = CarAttributesForm()
+        notification_form = NotificationForm()
+        return render(request, 'create_notification.html', {
+            'car_form': car_form,
+            'notification_form': notification_form
+        })
 
-class NotificationCreateApiView(CreateAPIView):
-    serializer_class = NotificationCreateSerializer
-    queryset = Notification.objects.all()
-    permission_classes = (IsAuthenticated,)
+    def post(self, request):
+        car_form = CarAttributesForm(request.POST)
+        notification_form = NotificationForm(request.POST)
 
-    def perform_create(self, serializer):
-        notification = serializer.save(user=self.request.user)
-
-        Notification.objects.create(
-            message=f'Notification created for you with this car model: {notification.car_model}',
-            send_at=timezone.now(),
-            notification_type=Notification.EMAIL,
-            is_sent=False,
-            user=self.request.user,
-            car_model=notification.car_model,
-        )
-
-    def create(self, request, *args, **kwargs):
-        form = NotificationForm(request.POST or None)
-        if form.is_valid():
-            notification = form.save(commit=False)
-            notification.user = request.user
-            notification.is_sent = False
-            notification.save()
+        if car_form.is_valid() and notification_form.is_valid():
+            car = car_form.save()
+            notification = Notification.objects.create(
+                car=car,
+                user=request.user,
+                notification_type=notification_form.cleaned_data['notification_type'],
+                message=f'Notification created for car: {car.title}, model : {car.model_year}'
+                        f'color{car.color}'
+            )
             return redirect('success_page')
 
-        return render(request, 'notification/notification_form.html', {'form': form})
-
+        return render(request, 'create_notification.html', {
+            'car_form': car_form,
+            'notification_form': notification_form
+        })
 
 @login_required
 def success_page(request):

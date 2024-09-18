@@ -9,12 +9,12 @@ app = Celery('hamrah_mechanic')
 
 app.config_from_object('django.conf:settings', namespace='CELERY')
 
-app.autodiscover_tasks()
+app.autodiscover_tasks(['notification'])
 
 app.conf.beat_schedule = {
-    'send-notification-every-hour': {
+    'send-notification-every-minute': {
         'task': 'notification.tasks.send_notifications',
-        'schedule': crontab(minute=0, hour='*'),  # هر ساعت یکبار
+        'schedule': crontab(minute='*')
     },
 }
 

@@ -9,7 +9,7 @@ User = get_user_model()
 class UserAdmin(admin.ModelAdmin):
     list_display = ('username', 'first_name', 'last_name', 'email')
 
-    def save_model(self, request, obj, form, change):
-        if not obj.pk:
-            obj.set_password(obj.password)
-        super().save_model(request, obj, form, change)
+    # def save_model(self, request, obj, form, change):
+    #     if not obj.pk:
+    #         obj.set_password(obj.password)
+    #     super().save_model(request, obj, form, change)
