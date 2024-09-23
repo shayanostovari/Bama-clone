@@ -11,7 +11,7 @@ class NotificationCreateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Notification
-        fields = ('car', 'notification_type')
+        fields = ('car',)
 
     def create(self, validated_data):
         notification = Notification.objects.create(**validated_data)
