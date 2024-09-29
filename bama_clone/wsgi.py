@@ -1,5 +1,5 @@
 """
-WSGI config for hamrah_mechanic project.
+WSGI config for bama_clone project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'hamrah_mechanic.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'bama_clone.settings')
 
 application = get_wsgi_application()

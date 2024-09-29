@@ -24,7 +24,6 @@ class NotificationCreateApiView(View):
             notification = Notification.objects.create(
                 car=car,
                 user=request.user,
-                notification_type=notification_form.cleaned_data['notification_type'],
                 message=f'Notification created for car: {car.title}, model : {car.model_year}'
                         f'color{car.color}'
             )

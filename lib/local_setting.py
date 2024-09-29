@@ -1,8 +1,11 @@
 SECRET_KEY = 'django-insecure-d_mz#epbi79g&qek^+b-+x4^6s&x!(^vswad66z&e)836f%9hb'
-
+DB_NAME = 'bama_clone'
+DB_PASSWORD = '1234'
+DB_HOST = 'localhost'
+DB_USER = 'shayan2'
+DB_PORT = 5432
 DEBUG = True
 
 EMAIL_USER = 'shayan.work.python@gmail.com'
 EMAIL_PASSWORD = 'payo qkrm doum njfv '
 
-KAVENEGAR_API = '4F7939495861782F4A363362635239714D6A6A724144504D67436773654336764C784A55544A4A545A58673D'

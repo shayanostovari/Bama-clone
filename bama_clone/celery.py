@@ -3,9 +3,9 @@ import os
 from celery import Celery
 from celery.schedules import crontab
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'hamrah_mechanic.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'bama_clone.settings')
 
-app = Celery('hamrah_mechanic')
+app = Celery('bama_clone')
 
 app.config_from_object('django.conf:settings', namespace='CELERY')
 
